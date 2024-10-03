@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:practica_1/modules/auth/login.dart';
+import 'package:practica_1/navigation/navigation.dart';
 import 'package:practica_1/navigation/profile.dart';
 import 'package:practica_1/navigation/reservations.dart';
 import 'package:practica_1/navigation/top.dart';
@@ -17,10 +19,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "/",
+      initialRoute: "/menu",
       routes: {
         "/": (context) => const SplashScreen(),
+        "/login": (context) => const Login(),
         "/home": (context) => const Home(),
+        "/menu": (context) => const Navigation(),
         "/reservations": (context) => const Reservations(),
         "/profile": (context) => const Profile(),
         "/top": (context) => const Top(),

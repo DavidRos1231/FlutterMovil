@@ -13,7 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), (){
-      Navigator.pushReplacementNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, '/login');
     });
   }
   @override
@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 1, 44, 80),
       body: Center(
-        child: Image.asset('assets/logo.png',width: 300.0, height: 300.0),
+        child: Image.asset('assets/logo.png',width: 200.0, height: 200.0),
       ),
     );
   }
