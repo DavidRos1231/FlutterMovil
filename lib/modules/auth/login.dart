@@ -1,55 +1,73 @@
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
 
   @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  bool _isObscure = true;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(16.0),
-                child: CircleAvatar(
-                  backgroundColor: Color.fromARGB(255, 36, 92, 38),
-                  child: Text(
-                  'DR',
-                  style: TextStyle(color: Colors.white),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/logo.png', width: 200, height: 200),
+            const SizedBox(height: 16),
+            TextFormField(
+              decoration: const InputDecoration(
+                hintText: 'Email',
+                labelText: 'Email',
+              ),
+              keyboardType: TextInputType.emailAddress,
+              controller: _email,
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: 'Password',
+                labelText: 'Password',
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _isObscure ? Icons.visibility : Icons.visibility_off,
                   ),
+                  onPressed: () {
+                    setState(() {
+                      _isObscure = !_isObscure;
+                    });
+                  },
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('David Rosales De Jesus', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0)),
-                  Text('Hace 10 minutos', style: TextStyle(color: Color.fromARGB(255, 56, 56, 56))),
-                ],
-              ),
-              Expanded(child: Align(alignment: Alignment.centerRight,child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Icon(Icons.more_vert),
-              )))
-            ],
-          ),
-          Image.asset('assets/mk1.jpg',width: double.infinity, height: 250),
-            const Row(
-            children: [
-              Padding(
-              padding: EdgeInsets.only(right: 8.0,left: 8.0),
-              child: Icon(Icons.favorite),
-              ),
-              Padding(
-              padding: EdgeInsets.only(right: 8.0),
-              child: Icon(Icons.comment),
-              ),
-              Icon(Icons.send),
-              Expanded(child: Align(alignment: Alignment.centerRight,child: Icon(Icons.bookmark)))
-            ],
+              obscureText: _isObscure,
+              controller: _password,
+            ),
+            const SizedBox(height:16),
+            SizedBox(
+              width: double.infinity,
+              height: 48,
+              child: ElevatedButton(
+                onPressed:(){
+                  print('Email:${_email.text}');
+                  print('Password:${_password.text}');
+                },
+                style:OutlinedButton.styleFrom(
+                  backgroundColor:Colors.blue,
+                  foregroundColor:Colors.white
+                ),
+                child:const Text('Iniciar sesion')
+              )
             )
-        ],
-      )
+
+          ],
+        ),
+      ),
     );
   }
 }
